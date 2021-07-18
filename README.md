@@ -103,19 +103,20 @@ Dados do Problema
 - custoFornecedorCliente: um vetor custos para cada cliente _i_. Dentro de cada i-ésimo vetor, cada posição _j_ indica o custo de alocação da demanda do Cliente _i_ no Fornecedor _j_.
 - custoFornecedor: vetor com o custo de ativação de cada Fornecedor _j_.
 
+Segue o exemplo de chamada:
 
-	{
-	    nFornecedores: "3",
-	    nClients: "5",
-	    custoFornecedorCliente: [
-		["1","2","3"],
-		["5","7","5"],
-		["3","9","2"],
-		["9","1","4"],
-		["1","154","13"]
-	    ],
-	    custoFornecedor: ["10","2","7"]
-	}
+	 {
+	     nFornecedores: "3",
+	     nClients: "5",
+	     custoFornecedorCliente: [
+		 ["1","2","3"],
+		 ["5","7","5"],
+		 ["3","9","2"],
+		 ["9","1","4"],
+		 ["1","154","13"]
+	     ],
+	     custoFornecedor: ["10","2","7"]
+	 }
 
 	
 
@@ -124,10 +125,12 @@ Dados do Problema
 
 - ID de execução e Senha para autenticação
 
-    {
-	    id:"8075662",
-	    password: "eTr#21@!!lop"
-	}
+Segue o exemplo:
+
+     {
+ 	     id:"8075662",
+	     password: "eTr#21@!!lop"
+	 }
 
 
 ## getSol
