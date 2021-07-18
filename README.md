@@ -75,6 +75,8 @@ Instalar o Flask e Flask Restfull:
 
     pip install Flask
     pip install flask-restful
+    pip install flask_httpauth
+    pip install localsolver -i https://pip.localsolver.com
 
 Executar o arquivo api.py:
 
