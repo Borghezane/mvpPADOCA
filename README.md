@@ -71,7 +71,7 @@ Ativar o _environment_
 
     . venv/bin/activate
 
-Instalar o Flask e Flask Restfull:
+Instalar dependências:
 
     pip install Flask
     pip install flask-restful
