@@ -24,6 +24,7 @@ class Init(Resource):
 
         padoca = Padoca(nClientes, nFornecedores, custoFornecedorCliente, custoFornecedor)
         padoca.createFileInstance()
+        padoca.run()
 
         return {"id": padoca.id, "password": padoca.password}
 

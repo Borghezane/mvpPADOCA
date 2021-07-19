@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from pwGenerator import *
+import os
+
+
 
 class Padoca(): 
     id = 0
@@ -68,6 +71,9 @@ class Padoca():
         #createFileInstance(self)
         #chamar resolvedor
         # pid = solv(self) bla bla bla
+
+        os.system("python fakerun.py " + self.arqName + " &")
+        
         pid = 13
         return pid
         
