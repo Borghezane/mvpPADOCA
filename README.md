@@ -27,8 +27,8 @@ Além do custo de alocação da demanda, cada abastecedor também possui um cust
 
 - _kc_: quantidade de clientes
 - _ka_: quantidade de abastecedor
-- _cia_: custo de alocação da demanda do cliente _i_ no abastecedor _f_, _0_ <= _i_ <= _kc_, _0_ <= _a_ <= _ka_.
-- _vf_: custo de ativação do Fornecedor _0_ <= _a_ < _ka_
+- _cia_: custo de alocação da demanda do cliente _i_ no abastecedor _a_, _0_ <= _i_ <= _kc_, _0_ <= _a_ <= _ka_.
+- _va_: custo de ativação do Fornecedor _0_ <= _a_ < _ka_
 
 ### Variáveis
 
