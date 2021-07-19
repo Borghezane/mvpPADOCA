@@ -1,13 +1,20 @@
 from flask_httpauth import HTTPBasicAuth
+from model.instancias import padocas
 
 auth = HTTPBasicAuth()
 
-USER_DATA = {
-    "admin": "admin"
-}
-
 @auth.verify_password
 def verify(username, password):
-    if not (username and password):
+    padid = username
+    print(padid)
+    print(password)
+    print(len(padocas))
+
+    for padid in padocas:
+        print(padocas[padid].password)
+        print(padocas[padid].id)
+
+    if padid in padocas:
+        return padocas[padid].password == password
+    else:
         return False
-    return USER_DATA.get(username) == password

@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import Flask, request
 from tools.authentication import auth
 from model.padoca import Padoca
-from model.instancias import Instancias
+from model.instancias import padocas
 
 class Init(Resource):
 
@@ -29,7 +29,7 @@ class Init(Resource):
         padoca.createFileInstance()
         padoca.run()
 
-        Instancias.addPadoca(padoca, padoca.id)
+        padocas[padoca.id] = padoca
 
         return {"id": padoca.id, "password": padoca.password}
 
