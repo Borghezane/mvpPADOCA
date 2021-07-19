@@ -8,17 +8,17 @@ Este projeto é um MVP (produto viável mínimo) que tem por objetivo demonstrar
 
 No caso específico deste MVP o problema resolvido é descrito em [2] e sua utilização é descrita em [4]. O passo-a-passo para a execução do projeto são listados em [3].
 
-# 2. Problema: PADCF
+# 2. Problema: PADOCA
 
 ## Descrição
 
-No Problema PADCF (Problema da Alocação de Demandas de Clientes a Fornecedores), uma quantidade _C_ de clientes possuem demandas que devem ser atendidas por _F_ fornecedores. 
+No Problema PADOCA (Problema da Alocação de Demandas Orientadas de Clientes em Abastecedores), uma quantidade _C_ de clientes possuem demandas que devem ser atendidas por _A_ abastecedores. 
 
-Para cada combinação _cliente x fornecedor_ existe um custo de alocação da demanda do cliente _ci_ no fornecedor _fi_.
+Para cada combinação _cliente x abastecedor existe um custo de alocação da demanda do cliente _ci_ no abastecedor _ai_.
 
-Por exemplo, para um cliente _ci=2_, existe os custos _c2f1=7_ indicando que o fornecedor 1 atende a demanda do cliente 2 com custo 7.
+Por exemplo, para um cliente _ci=2_, existe os custos _c2f1=7_ indicando que o abastecedor 1 atende a demanda do cliente 2 com custo 7.
 
-Além do custo de alocação da demanda, cada fornecedor também possui um custo de _ai_ de ativação. Para que o fornecedor 1 possa atender o cliente 2, por exemplo, um custo _a1=100_ deve ser pago uma vez nessa alocação de demandas. Caso o custo de ativação de um fornecedor esteja pago, ele pode ser usado para atender quaisquer clientes. 
+Além do custo de alocação da demanda, cada abastecedor também possui um custo de _ai_ de ativação. Para que o abastecedor 1 possa atender o cliente 2, por exemplo, um custo _a1=100_ deve ser pago uma vez nessa alocação de demandas. Caso o custo de ativação de um abastecedor esteja pago, ele pode ser usado para atender quaisquer clientes. 
 
 
 ## Modelo Matemático
@@ -26,14 +26,14 @@ Além do custo de alocação da demanda, cada fornecedor também possui um custo
 ### Constantes
 
 - _kc_: quantidade de clientes
-- _kf_: quantidade de fonecedores
-- _cif_: custo de alocação da demanda do cliente _i_ no fornecedor _f_, _0_ <= _i_ <= _kc_, _0_ <= _f_ <= _kf_.
-- _af_: custo de ativação do Fornecedor _0_ <= _f_ < _kf_
+- _ka_: quantidade de fonecedores
+- _cij_: custo de alocação da demanda do cliente _i_ no Abastecedor _j_, _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
+- _aj_: custo de ativação do Abastecedor _0_ <= _j_ < _kf_
 
 ### Variáveis
 
-- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Fornecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
-- _yj_: é 1 se o Fornecedor _j_ foi ativado e 0 caso contrário. _0_ <= _j_ < _kf_
+- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Abastecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
+- _yj_: é 1 se o Abastecedor _j_ foi ativado e 0 caso contrário. _0_ <= _j_ < _kf_
 
 ### Objetivo
 
@@ -99,28 +99,28 @@ A API oferece duas operações:
 **Entrada:**
 
 
-        curl --header "Content-Type: application/json"   --request POST  --data '{"nFornecedores": "3", "nClients": "5", "custoFornecedorCliente":[["1","2","3"],["5","7","5"],["3","9","2"],["9","1","4"],["1","154","13"]],"custoFornecedor": ["10","2","7"]}'   http://localhost:5000/api/v1/init
+        curl --header "Content-Type: application/json"   --request POST  --data '{"nAbastecedores": "3", "nClients": "5", "custoAbastecedorCliente":[["1","2","3"],["5","7","5"],["3","9","2"],["9","1","4"],["1","154","13"]],"custoAbastecedor": ["10","2","7"]}'   http://localhost:5000/api/v1/init
 
 Dados do Problema
 
-- nFornecedores: inteiro que indica a quantidade de Fornecedores
+- nAbastecedores: inteiro que indica a quantidade de Abastecedores
 - nClientes: inteiro que indica a quantidade de Clientes
-- custoFornecedorCliente: um vetor custos para cada cliente _i_. Dentro de cada i-ésimo vetor, cada posição _j_ indica o custo de alocação da demanda do Cliente _i_ no Fornecedor _j_.
-- custoFornecedor: vetor com o custo de ativação de cada Fornecedor _j_.
+- custoAbastecedorCliente: um vetor custos para cada cliente _i_. Dentro de cada i-ésimo vetor, cada posição _j_ indica o custo de alocação da demanda do Cliente _i_ no Abastecedor _j_.
+- custoAbastecedor: vetor com o custo de ativação de cada Abastecedor _j_.
 
 Segue o exemplo de chamada:
 
 	 {
-	     nFornecedores: "3",
+	     nAbastecedores: "3",
 	     nClients: "5",
-	     custoFornecedorCliente: [
+	     custoAbastecedorCliente: [
 		 ["1","2","3"],
 		 ["5","7","5"],
 		 ["3","9","2"],
 		 ["9","1","4"],
 		 ["1","154","13"]
 	     ],
-	     custoFornecedor: ["10","2","7"]
+	     custoAbastecedor: ["10","2","7"]
 	 }
 
 	
