@@ -1,4 +1,4 @@
-# 1. Projeto mvpPLPython
+# 1. Projeto mvpPADOCA
 
 Este projeto é um MVP (produto viável mínimo) que tem por objetivo demonstrar a utilização das seguintes tecnologias com o intuito de disponibilizar uma API para um resolvedor de problemas de otimização (PLIs) que possa ser acessada por diferentes sistemas. 
 
@@ -12,13 +12,13 @@ No caso específico deste MVP o problema resolvido é descrito em [2] e sua util
 
 ## Descrição
 
-No Problema PADCF (Problema da Alocação de Demandas de Clientes a Fornecedores), uma quantidade _C_ de clientes possuem demandas que devem ser atendidas por _F_ fornecedores. 
+No Problema PADOCA (Problema da Alocação de Demandas Orientadas de Clientes em Abastecedores), uma quantidade _C_ de clientes possuem demandas que devem ser atendidas por _F_ fornecedores. 
 
-Para cada combinação _cliente x fornecedor_ existe um custo de alocação da demanda do cliente _ci_ no fornecedor _fi_.
+Para cada combinação _cliente x abastecedor existe um custo de alocação da demanda do cliente _ci_ no fornecedor _ai_.
 
-Por exemplo, para um cliente _ci=2_, existe os custos _c2f1=7_ indicando que o fornecedor 1 atende a demanda do cliente 2 com custo 7.
+Por exemplo, para um cliente _ci=2_, existe os custos _c2a1=7_ indicando que o abastecedor 1 atende a demanda do cliente 2 com custo 7.
 
-Além do custo de alocação da demanda, cada fornecedor também possui um custo de _ai_ de ativação. Para que o fornecedor 1 possa atender o cliente 2, por exemplo, um custo _a1=100_ deve ser pago uma vez nessa alocação de demandas. Caso o custo de ativação de um fornecedor esteja pago, ele pode ser usado para atender quaisquer clientes. 
+Além do custo de alocação da demanda, cada abastecedor também possui um custo de _vi_ de ativação. Para que o fornecedor 1 possa atender o cliente 2, por exemplo, um custo _v1=100_ deve ser pago uma vez nessa alocação de demandas. Caso o custo de ativação de um fornecedor esteja pago, ele pode ser usado para atender quaisquer clientes. 
 
 
 ## Modelo Matemático
@@ -26,27 +26,27 @@ Além do custo de alocação da demanda, cada fornecedor também possui um custo
 ### Constantes
 
 - _kc_: quantidade de clientes
-- _kf_: quantidade de fonecedores
-- _cif_: custo de alocação da demanda do cliente _i_ no fornecedor _f_, _0_ <= _i_ <= _kc_, _0_ <= _f_ <= _kf_.
-- _af_: custo de ativação do Fornecedor _0_ <= _f_ < _kf_
+- _ka_: quantidade de abastecedor
+- _cia_: custo de alocação da demanda do cliente _i_ no abastecedor _f_, _0_ <= _i_ <= _kc_, _0_ <= _a_ <= _ka_.
+- _vf_: custo de ativação do Fornecedor _0_ <= _a_ < _ka_
 
 ### Variáveis
 
-- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Fornecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
-- _yj_: é 1 se o Fornecedor _j_ foi ativado e 0 caso contrário. _0_ <= _j_ < _kf_
+- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Abastecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _ka_.
+- _yj_: é 1 se o Abastecedor _j_ foi ativado e 0 caso contrário. _0_ <= _j_ < _kf_
 
 ### Objetivo
 
-- _min_ SUM(SUM(_xij_ * _cif_)) +  SUM(_yj_ * _aj_) 
+- _min_ SUM(SUM(_xij_ * _cia_)) +  SUM(_yj_ * _vj_) 
 
 
 ### Modelagem
 
 _min_ SUM(SUM(_xij_ * _cif_)) +  SUM(_yj_ * _aj_) 
 
-1. SUM(_xij_) >= 1  , Para todo _j_, _0_ <= _j_ < _kf_
+1. SUM(_xij_) >= 1  , Para todo _j_, _0_ <= _j_ < _ka_
 
-1. _yj_ >= _xij_    , Para todo _j_, _0_ <= _j_ < _kf_, Para todo _0_ <= _i_ <= _kc_
+1. _yj_ >= _xij_    , Para todo _j_, _0_ <= _j_ < _ka_, Para todo _0_ <= _i_ <= _kc_
 
 1. _xij_ in {0,1}
 
