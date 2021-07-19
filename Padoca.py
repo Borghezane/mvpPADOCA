@@ -42,22 +42,26 @@ class Padoca():
 
 
 
-    
-    def __init__(self):
+
+    def __init__(self, nClientes, nFornecedores, custoFornecedorCliente, custoFornecedor):
         self.id                     = None 
-        self.nClientes              = None
-        self.nFornecedores          = None
-        self.custoFornecedorCliente = None
-        self.custoFornecedor        = None
+        self.nClientes              = nClientes
+        self.nFornecedores          = nFornecedores
+        self.custoFornecedorCliente = custoFornecedorCliente
+        self.custoFornecedor        = custoFornecedor
         self.password               = None
-        self.arquivo                = None
+        self.arqName                = None
 
 
         self.id = Padoca.id
-        self.arquivo = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
-        self.password = pwGenerator.genPw(16)
         Padoca.id     += 1 
-        pass
+        Padoca.setUpdateId()
+        self.arqName = "PadocaInstances/"+str(self.id)+".padoca"
+        #self.arquivo = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
+        self.password = pwGenerator.genPw(16)
+        
+
+
 
     def run(self):
         pid = None
@@ -66,24 +70,62 @@ class Padoca():
         # pid = solv(self) bla bla bla
         pid = 13
         return pid
+        
+    def getPassword(self):
+        return self.password
 
     def createFileInstance(self):
-        pass
+        arq = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
 
-    def checkPass(self):
-        pass
+        problemStr = "p padoca " + str(nClientes) + " " + str(nFornecedores) + "\n"
+        
+        wStr = ""
+        for i in range(self.nClientes):
+            for j in range(self.nFornecedores):
+                wStr += "w " + str(i+1) + " " + str(j+1) + " " + str((custoFornecedorCliente[i])[j]) + "\n"
+        vStr = ""
+        for i in range(self.nFornecedores):
+            vStr += "v " + str(i+1) + " " + str(custoFornecedor[i]) + "\n"
+
+        arq.write(problemStr)
+        arq.write(wStr)
+        arq.write(vStr)
+
+        arq.close()
+
+
+    def checkPass(self, password):
+        return self.password == password
 
     def getSol(self):
         pass
 
 if __name__ == '__main__':
     Padoca.getUpdateId()
-    padoquinha = Padoca()
+    #padoquinha = Padoca()
     #padoquinha2 = Padoca()  
 
 
 
+    nClientes = 5
+    nFornecedores = 3
+
+    custoFornecedorCliente = []
+    for i in range(nClientes):
+        custoFornecedorCliente.append([])
+        for j in range(nFornecedores):
+            custoFornecedorCliente[i].append(1)
+
+    custoFornecedor = []
+    for i in range(nFornecedores):
+        custoFornecedor.append(1)
+
+    padoquinha = Padoca(nClientes, nFornecedores, custoFornecedorCliente, custoFornecedor)
+
+    padoquinha.createFileInstance()
+
+
     #print(padoquinha2.id)
 
-    Padoca.setUpdateId()
+    #Padoca.setUpdateId()
 
