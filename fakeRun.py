@@ -13,6 +13,7 @@ arq.write("fake write\n")
 
 a = 0
 for i in range(99999999):
+    for j in range(99999999):
         a += 1
 
 print("aaaaa")
