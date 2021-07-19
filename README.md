@@ -1,4 +1,4 @@
-# 1. Projeto mvpPLPython
+# 1. Projeto mvpPADOCA
 
 Este projeto é um MVP (produto viável mínimo) que tem por objetivo demonstrar a utilização das seguintes tecnologias com o intuito de disponibilizar uma API para um resolvedor de problemas de otimização (PLIs) que possa ser acessada por diferentes sistemas. 
 
@@ -21,32 +21,33 @@ Por exemplo, para um cliente _ci=2_, existe os custos _c2f1=7_ indicando que o a
 Além do custo de alocação da demanda, cada abastecedor também possui um custo de _ai_ de ativação. Para que o abastecedor 1 possa atender o cliente 2, por exemplo, um custo _a1=100_ deve ser pago uma vez nessa alocação de demandas. Caso o custo de ativação de um abastecedor esteja pago, ele pode ser usado para atender quaisquer clientes. 
 
 
+
 ## Modelo Matemático
 
 ### Constantes
 
 - _kc_: quantidade de clientes
-- _ka_: quantidade de fonecedores
-- _cij_: custo de alocação da demanda do cliente _i_ no Abastecedor _j_, _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
-- _aj_: custo de ativação do Abastecedor _0_ <= _j_ < _kf_
+- _ka_: quantidade de abastecedor
+- _cia_: custo de alocação da demanda do cliente _i_ no abastecedor _a_, _0_ <= _i_ <= _kc_, _0_ <= _a_ <= _ka_.
+- _va_: custo de ativação do Fornecedor _0_ <= _a_ < _ka_
 
 ### Variáveis
 
-- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Abastecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _kf_.
+- _xij_: é 1 se o Cliente _i_ tem demanda atendida pelo Abastecedor j e 0 caso contrário.  _0_ <= _i_ <= _kc_, _0_ <= _j_ <= _ka_.
 - _yj_: é 1 se o Abastecedor _j_ foi ativado e 0 caso contrário. _0_ <= _j_ < _kf_
 
 ### Objetivo
 
-- _min_ SUM(SUM(_xij_ * _cif_)) +  SUM(_yj_ * _aj_) 
+- _min_ SUM(SUM(_xij_ * _cia_)) +  SUM(_yj_ * _vj_) 
 
 
 ### Modelagem
 
 _min_ SUM(SUM(_xij_ * _cif_)) +  SUM(_yj_ * _aj_) 
 
-1. SUM(_xij_) >= 1  , Para todo _j_, _0_ <= _j_ < _kf_
+1. SUM(_xij_) >= 1  , Para todo _j_, _0_ <= _j_ < _ka_
 
-1. _yj_ >= _xij_    , Para todo _j_, _0_ <= _j_ < _kf_, Para todo _0_ <= _i_ <= _kc_
+1. _yj_ >= _xij_    , Para todo _j_, _0_ <= _j_ < _ka_, Para todo _0_ <= _i_ <= _kc_
 
 1. _xij_ in {0,1}
 
