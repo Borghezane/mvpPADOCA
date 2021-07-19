@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from pwGenerator import *
+from tools.pwGenerator import PwGenerator
 import os
 
 
@@ -58,9 +58,9 @@ class Padoca():
         self.id = Padoca.id
         Padoca.id     += 1 
         Padoca.setUpdateId()
-        self.arqName = "PadocaInstances/"+str(self.id)+".padoca"
+        self.arqName = "data/PadocaInstances/"+str(self.id)+".padoca"
         #self.arquivo = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
-        self.password = pwGenerator.genPw(16)
+        self.password = PwGenerator.genPw(16)
         
 
 
@@ -73,7 +73,7 @@ class Padoca():
 
 
         if os.name == "posix":
-            os.system("python fakeRun.py " + self.arqName + " &") 
+            os.system("python solver/fakeRun.py " + self.arqName + " &") 
         else:
             os.system("start /B python fakerun.py " + self.arqName )
 
@@ -85,7 +85,7 @@ class Padoca():
         return self.password
 
     def createFileInstance(self):
-        arq = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
+        arq = open("data/PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
 
         problemStr = "p padoca " + str(self.nClientes) + " " + str(self.nFornecedores) + "\n"
         

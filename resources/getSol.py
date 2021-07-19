@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import Flask, request
-from authentication import auth
+from tools.authentication import auth
 from model.padoca import Padoca
 
 class GetSol(Resource):
