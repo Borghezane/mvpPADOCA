@@ -3,8 +3,8 @@ from flask_restful import Api
 from resources.init import Init
 from resources.getSol import GetSol
 from model.padoca import Padoca
-
-instancias = {}
+import logging
+from datetime import datetime
 
 app = Flask(__name__)
 api = Api(app, prefix="/api/v1")

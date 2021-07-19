@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import Flask, request
 from tools.authentication import auth
 from model.padoca import Padoca
+from model.instancias import Instancias
 
 class Init(Resource):
 
@@ -15,16 +16,20 @@ class Init(Resource):
         custoFornecedorCliente = []
         for i in range(nClientes):
             custoFornecedorCliente.append([])
+            dataCusto = data['custoFornecedorCliente']
             for j in range(nFornecedores):
-                custoFornecedorCliente[i].append(1)
+                custoFornecedorCliente[i].append(int(dataCusto[i][j]))
 
         custoFornecedor = []
+        datacusto = data['custoFornecedor']
         for i in range(nFornecedores):
-            custoFornecedor.append(1)
+            custoFornecedor.append(dataCusto[i])
 
         padoca = Padoca(nClientes, nFornecedores, custoFornecedorCliente, custoFornecedor)
         padoca.createFileInstance()
         padoca.run()
+
+        Instancias.addPadoca(padoca, padoca.id)
 
         return {"id": padoca.id, "password": padoca.password}
 
