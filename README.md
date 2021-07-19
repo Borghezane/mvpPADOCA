@@ -145,6 +145,7 @@ Segue o exemplo:
 
 Uma requisição com os dados de autenticação equivalentes aos recebidos como saída da operação `init`.
 
+curl --user admin:admin http://localhost:5000/api/v1/private
 
 **Saída:**
 
