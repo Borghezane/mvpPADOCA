@@ -1,6 +1,6 @@
-#padoca.env
-#PadocaInstances/*.padoca
-#PadocaRuns/*.prun
+padoca.env
+PadocaInstances/*.padoca
+PadocaRuns/*.prun
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
