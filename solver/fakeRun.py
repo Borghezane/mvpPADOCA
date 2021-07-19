@@ -12,8 +12,7 @@ arq = open(sys.argv[1].replace("padoca","prun").replace("PadocaInstances","Padoc
 arq.write("fake write\n")
 
 a = 0
-for i in range(99999999):
-    for j in range(99999999):
+for i in range(9999):
         a += 1
 
 print("aaaaa")
