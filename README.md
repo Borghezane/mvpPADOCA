@@ -14,7 +14,7 @@ No caso específico deste MVP o problema resolvido é descrito em [2] e sua util
 
 No Problema PADOCA (Problema da Alocação de Demandas Orientadas de Clientes em Abastecedores), uma quantidade _C_ de clientes possuem demandas que devem ser atendidas por _A_ abastecedores. 
 
-Para cada combinação _cliente x abastecedor existe um custo de alocação da demanda do cliente _ci_ no abastecedor _ai_.
+Para cada combinação _cliente_ x _abastecedor_ existe um custo de alocação da demanda do cliente _ci_ no abastecedor _ai_.
 
 Por exemplo, para um cliente _ci=2_, existe os custos _c2f1=7_ indicando que o abastecedor 1 atende a demanda do cliente 2 com custo 7.
 
