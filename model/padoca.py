@@ -5,7 +5,6 @@ from pwGenerator import *
 import os
 
 
-
 class Padoca(): 
     id = 0
     init = False
@@ -72,8 +71,13 @@ class Padoca():
         #chamar resolvedor
         # pid = solv(self) bla bla bla
 
-        os.system("python fakerun.py " + self.arqName + " &")
-        
+
+        if os.name == "posix":
+            os.system("python fakeRun.py " + self.arqName + " &") 
+        else:
+            os.system("start /B python fakerun.py " + self.arqName )
+
+
         pid = 13
         return pid
         
