@@ -8,7 +8,7 @@ Este projeto é um MVP (produto viável mínimo) que tem por objetivo demonstrar
 
 No caso específico deste MVP o problema resolvido é descrito em [2] e sua utilização é descrita em [4]. O passo-a-passo para a execução do projeto são listados em [3].
 
-# 2. Problema: PADCF
+# 2. Problema: PADOCA
 
 ## Descrição
 
