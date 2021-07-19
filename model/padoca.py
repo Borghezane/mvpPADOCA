@@ -4,7 +4,6 @@
 from tools.pwGenerator import PwGenerator
 import os
 
-
 class Padoca(): 
     id = 0
     init = False
