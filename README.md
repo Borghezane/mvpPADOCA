@@ -98,6 +98,9 @@ A API oferece duas operações:
 
 **Entrada:**
 
+
+        curl --header "Content-Type: application/json"   --request POST  --data '{"nFornecedores": "3", "nClients": "5", "custoFornecedorCliente":[["1","2","3"],["5","7","5"],["3","9","2"],["9","1","4"],["1","154","13"]],"custoFornecedor": ["10","2","7"]}'   http://localhost:5000/api/v1/init
+
 Dados do Problema
 
 - nFornecedores: inteiro que indica a quantidade de Fornecedores

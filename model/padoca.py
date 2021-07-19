@@ -77,15 +77,15 @@ class Padoca():
     def createFileInstance(self):
         arq = open("PadocaInstances/"+str(self.id)+".padoca","a+", encoding="utf-8")
 
-        problemStr = "p padoca " + str(nClientes) + " " + str(nFornecedores) + "\n"
+        problemStr = "p padoca " + str(self.nClientes) + " " + str(self.nFornecedores) + "\n"
         
         wStr = ""
         for i in range(self.nClientes):
             for j in range(self.nFornecedores):
-                wStr += "w " + str(i+1) + " " + str(j+1) + " " + str((custoFornecedorCliente[i])[j]) + "\n"
+                wStr += "w " + str(i+1) + " " + str(j+1) + " " + str((self.custoFornecedorCliente[i])[j]) + "\n"
         vStr = ""
         for i in range(self.nFornecedores):
-            vStr += "v " + str(i+1) + " " + str(custoFornecedor[i]) + "\n"
+            vStr += "v " + str(i+1) + " " + str(self.custoFornecedor[i]) + "\n"
 
         arq.write(problemStr)
         arq.write(wStr)
