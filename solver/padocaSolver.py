@@ -68,12 +68,14 @@ with localsolver.LocalSolver() as ls:
         x.append([])
         for j in range(nAbastecedores):
             x[i].append(model.int(0,1))
+            x[i][j].name = "x"+str(i)+str(j)
 
     # Variável Y_i
     # Se o abstecedor i foi utilizado
     y = []
     for i in range(nAbastecedores):
         y.append(model.int(0,1))
+        y[i].name = "y"+str(i)
 
 
     # Restrição de cobertura
@@ -118,8 +120,34 @@ with localsolver.LocalSolver() as ls:
     #  - surface and volume of the bucket
     #  - values of R, r and h
     #
-    print( custoAloc.value)
+    print( custoAloc)
     #print("%d %d %d %d\n" % (anel.value, tv.value, livro.value, vinho.value))
-    #for i in range(4):
-    #    print( var[i].value, end=" ")
-    #print()
+    
+    sol = []
+    for c in range(nClientes):
+        sol.append(-1)
+
+    for c in range(nClientes):
+        for a in range(nAbastecedores):
+            if( x[c][a].value == 1 ):
+                sol[c] = a
+
+    #print(sol)
+    arqOut = sys.argv[1]
+    arqOut = arqOut.replace(".padoca",".prun").replace("PadocaInstances", "PadocaRuns")
+    print("arqOut: ", arqOut)
+    output = open(arqOut, "w", encoding="utf-8")
+
+    output.write("{")
+    output.write("\"custo\":\""+str(custoAloc.value)+"\"," )
+
+    output.write("\"solucao\":[")
+    for i in range(len(sol)):
+        if( i == len(sol)-1 ):
+            output.write("\""+str(sol[i])+"\"],")
+        else:
+            output.write("\""+str(sol[i])+"\", ")
+    output.write("\"encerrado\": \"true\"")
+    output.write("}")
+
+    
