@@ -9,7 +9,7 @@ tam = len(sys.argv)
 
 arq = open(sys.argv[1].replace("padoca","prun").replace("PadocaInstances","PadocaRuns"),"a+", encoding="utf-8")
 
-arq.write("fake write\n")
+arq.write('{"fake": "write"}')
 
 a = 0
 for i in range(9999):
