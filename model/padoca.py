@@ -72,9 +72,9 @@ class Padoca():
 
 
         if os.name == "posix":
-            os.system("python solver/fakeRun.py " + self.arqName + " &") 
+            os.system("python solver/padocaSolver.py " + self.arqName + " &") 
         else:
-            os.system("start /B python fakerun.py " + self.arqName )
+            os.system("start /B python solver/padocaSolver.py " + self.arqName )
 
 
         pid = 13
