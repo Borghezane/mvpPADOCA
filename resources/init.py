@@ -18,12 +18,12 @@ class Init(Resource):
             custoFornecedorCliente.append([])
             dataCusto = data['custoFornecedorCliente']
             for j in range(nFornecedores):
-                custoFornecedorCliente[i].append(int(dataCusto[i][j]))
+                custoFornecedorCliente[i].append(float(dataCusto[i][j]))
 
         custoFornecedor = []
-        datacusto = data['custoFornecedor']
+        dataCusto = data['custoFornecedor']
         for i in range(nFornecedores):
-            custoFornecedor.append(dataCusto[i])
+            custoFornecedor.append(float(dataCusto[i]))
 
         padoca = Padoca(nClientes, nFornecedores, custoFornecedorCliente, custoFornecedor)
         padoca.createFileInstance()
