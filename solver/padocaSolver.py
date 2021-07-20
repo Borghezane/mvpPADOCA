@@ -39,7 +39,7 @@ def readPadocaInstance(nAbastecedores, nClientes, custoA, custoAtoC, arqName):
             pass
         else:
             raise Exception('Formato incorreto de instância, leia o readme')
-    print("nclientes", nClientes)
+    return nAbastecedores, nClientes, custoA, custoAtoC
 
 with localsolver.LocalSolver() as ls:
 
@@ -52,32 +52,38 @@ with localsolver.LocalSolver() as ls:
         print("Usage: python padocaSolver.py instance.padoca [timelimit]")
         sys.exit(1)
 
-    nAbastecedores = 0
-    nClientes      = 0
-    custoA         = 0
-    custoAtoC      = 0
-    readPadocaInstance(nAbastecedores, nClientes, custoA, custoAtoC, sys.argv[1])     
+    nAbastecedores = None
+    nClientes      = None
+    custoA         = None
+    custoAtoC      = None
 
-    print(nClientes)   
+    nAbastecedores, nClientes, custoA, custoAtoC = readPadocaInstance(nAbastecedores, nClientes, custoA, custoAtoC, sys.argv[1])     
 
-    # Variáveis
+  
+
+    # Variável X_ij
+    # o cliente i esta sendo abstecido pelo abastecedor j x[i][j]
     x = []
     for i in range(nClientes):
         x.append([])
         for j in range(nAbastecedores):
-            x.append(model.int(0,1))
+            x[i].append(model.int(0,1))
+
+    # Variável Y_i
+    # Se o abstecedor i foi utilizado
     y = []
     for i in range(nAbastecedores):
         y.append(model.int(0,1))
 
-    # Restrições
 
+    # Restrição de cobertura
     for c in range(nClientes):
         clientRestr = 0
         for a in range(nAbastecedores):
             clientRestr += (x[c])[a]
         model.constraint(clientRestr >= 1)
 
+    # Forçar ativação de variáveis y
     for a in range(nAbastecedores):
         absRestr = 0
         absRestr += nClientes*y[a]
@@ -87,8 +93,11 @@ with localsolver.LocalSolver() as ls:
 
     # Função Objetivo
     custoAloc = 0
+    #soma dos custos de ativação
     for a in range(nAbastecedores):
         custoAloc += custoA[a]*y[a]
+
+    #soma das alocações de cada cliente c
     for c in range(nClientes):
         for a in range(nAbastecedores):
             custoAloc += (custoAtoC[c])[a]*(x[c])[a]
@@ -109,7 +118,7 @@ with localsolver.LocalSolver() as ls:
     #  - surface and volume of the bucket
     #  - values of R, r and h
     #
-    print( custoAloc)
+    print( custoAloc.value)
     #print("%d %d %d %d\n" % (anel.value, tv.value, livro.value, vinho.value))
     #for i in range(4):
     #    print( var[i].value, end=" ")
